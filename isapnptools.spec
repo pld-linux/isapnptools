@@ -2,15 +2,15 @@ Summary:	Programs to configure ISA Plug-And-Play devices
 Summary(pl):	Narzêdzia do konfigurowania urz±dzeñ Plug-And-Play
 Name:		isapnptools
 Version:	1.18
-Release:	2
+Release:	3
 Copyright:	GPL
 Group:		Utilities/System
 Group(pl):	Narzêdzia/System
 URL:		ftp://ftp.demon.co.uk/pub/unix/linux/utils/
 Source:		%{name}-%{version}.tgz
-Patch0:		%{name}.patch
+Patch:		%{name}.patch
 ExcludeArch:	sparc
-BuildRoot:	/tmp/buildroot-%{name}-%{version}
+BuildRoot:	/tmp/%{name}-%{version}-root
 
 %description
 These programs allow ISA Plug-And-Play devices to be configured on a Linux
@@ -35,15 +35,11 @@ posiadania BIOS-u obs³uguj±cego PnP.
 %setup -q -n %{name}-%{version}
 %patch -p1
 
-#for %doc in stupid rpm-2.5.5
-chmod 644 READ*
-
 %build
-make CPPFLAGS="$RPM_OPT_FLAGS" 
+make CPPFLAGS="$RPM_OPT_FLAGS" LDFLAGS=-s
 
 %install
 rm -rf $RPM_BUILD_ROOT
-
 install -d $RPM_BUILD_ROOT/{sbin,usr/man/man5,usr/man/man8,etc/isapnp}
 
 make \
@@ -55,23 +51,27 @@ make \
 install *.conf $RPM_BUILD_ROOT/etc/isapnp
 
 gzip -9nf $RPM_BUILD_ROOT/usr/man/man*/*
-bzip2 -9 CHANGES READ* *.txt config-scripts/YMH0021
+gzip -9nf CHANGES READ* *.txt config-scripts/YMH0021
 
 %clean
 rm -rf $RPM_BUILD_ROOT
 
 %files
 %defattr(644,root,root,755)
-%doc CHANGES.bz2 READ* *.txt.bz2 
-%doc config-scripts/YMH0021.bz2
+%doc {CHANGES,READ*,*.txt,config-scripts/YMH0021}.gz
 
 %attr(750,root,root) %dir /etc/isapnp
 %attr(640,root,root) %config %verify(not size mtime md5) /etc/isapnp/*
-
 %attr(755,root,root) /sbin/*
-%attr(644,root, man) /usr/man/man[58]/*
+/usr/man/man[58]/*
 
 %changelog
+* Mon Apr 26 1999 Micha³ Kuratczyk <kura@pld.org.pl>
+  [1.18-3]
+- removed man group from man pages
+- gzipping documentation instead bzipping
+- added LDFLAGS=-s
+
 * Thu Feb 18 1999 Arkadiusz Mi¶kiewicz <misiek@misiek.eu.org>
   [1.18-1d]
 - new version
