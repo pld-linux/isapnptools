@@ -1,14 +1,13 @@
 Summary:	Programs to configure ISA Plug-And-Play devices
 Summary(pl):	Narzêdzia do konfigurowania urz±dzeñ Plug-And-Play
 Name:		isapnptools
-Version:	1.23
+Version:	1.24
 Release:	1
 License:	GPL
 Group:		Applications/System
 Group(de):	Applikationen/System
 Group(pl):	Aplikacje/System
 Source0:	ftp://ftp.demon.co.uk/pub/unix/linux/utils/%{name}-%{version}.tgz
-Patch0:		%{name}-pnpdump_main.patch
 URL:		http://www.roestock.demon.co.uk/isapnptools/
 BuildRequires:	flex
 Prereq:		sed
@@ -46,7 +45,6 @@ posiadania BIOS-u obs³uguj±cego PnP.
 
 %prep
 %setup -q
-%patch -p1
 
 %build
 %configure
