@@ -1,35 +1,7 @@
---- isapnptools-1.19/Makefile.wiget	Sat Oct 16 17:20:31 1999
-+++ isapnptools-1.19/Makefile	Sat Oct 30 03:43:58 1999
-@@ -30,7 +30,7 @@
- #                glibc 2.0 or later.
- #
- #PNPFLAGS += -DREALTIME -DNEEDSETSCHEDULER -DNEEDNANOSLEEP
--PNPFLAGS += -DREALTIME -DNEEDSETSCHEDULER
-+PNPFLAGS += -DREALTIME
- #
- # Linux on ALPHA/AXP should already define this, but just in case..
- #
-@@ -45,7 +45,7 @@
- # insert the path to your non-root install directory above (if you need one)
- installprefix   =       $(installdir)/$(prefix)
- 
--CONFDIR = etc
-+CONFDIR = etc/isapnp
- GONEFILE = isapnp.gone
- 
- INSTALLBINDIR = $(installprefix)sbin
-@@ -53,7 +53,7 @@
- INSTALLSHAREDIR=$(installprefix)usr/share
- INSTALLSCRIPTDIR=$(INSTALLSHAREDIR)/pnp/config-scripts/isa
- 
--CFLAGS = -O2 -Wall -DYY_NO_UNPUT $(PNPDUMPFLAGS) $(PNPFLAGS) -DGONEFILE=\"/$(CONFDIR)/$(GONEFILE)\"
-+CFLAGS = -Wall -DYY_NO_UNPUT $(PNPDUMPFLAGS) $(PNPFLAGS) -DGONEFILE=\"/$(CONFDIR)/$(GONEFILE)\"
- 
- all:	pnpdump isapnp
- 
---- isapnptools-1.19/isapnp.8.wiget	Sat Oct 16 17:22:32 1999
-+++ isapnptools-1.19/isapnp.8	Sat Oct 30 03:40:33 1999
-@@ -213,10 +213,10 @@
+diff -Nru isapnptools-1.23/doc/isapnp.8 isapnptools-1.23.new/doc/isapnp.8
+--- isapnptools-1.23/doc/isapnp.8	Tue Jul 25 22:37:00 2000
++++ isapnptools-1.23.new/doc/isapnp.8	Wed Jan  3 21:46:36 2001
+@@ -225,10 +225,10 @@
  \fC/sbin/isapnp\fR
  The executable.
  .TP
@@ -42,8 +14,9 @@
  The standard place for describing resources that are unavailable,
  but not flagged as such in /proc/* etc. The format of this file
  is explained in the example provided with \fBisapnptools\fP.
---- isapnptools-1.19/isapnp.conf.5.wiget	Sat Oct 16 17:22:32 1999
-+++ isapnptools-1.19/isapnp.conf.5	Sat Oct 30 03:40:33 1999
+diff -Nru isapnptools-1.23/doc/isapnp.conf.5 isapnptools-1.23.new/doc/isapnp.conf.5
+--- isapnptools-1.23/doc/isapnp.conf.5	Tue Jul 25 22:37:00 2000
++++ isapnptools-1.23.new/doc/isapnp.conf.5	Wed Jan  3 21:46:36 2001
 @@ -8,7 +8,7 @@
  .SH NAME
  isapnp.conf \- File format used by isapnp.
@@ -53,19 +26,10 @@
  .SH DESCRIPTION
  The \fBisapnp.conf\fP file is a configuration file for \fBisapnp\fP.
  
---- isapnptools-1.19/isapnp.gone.wiget	Sat Oct 16 17:22:32 1999
-+++ isapnptools-1.19/isapnp.gone	Sat Oct 30 03:40:33 1999
-@@ -1,6 +1,6 @@
- #------------------------------------------------------------------
- #
--# /etc/isapnp.gone
-+# /etc/isapnp/isapnp.gone
- #
- #------------------------------------------------------------------
- #
---- isapnptools-1.19/pnpdump.8.wiget	Sat Oct 16 17:22:32 1999
-+++ isapnptools-1.19/pnpdump.8	Sat Oct 30 03:45:05 1999
-@@ -97,7 +97,7 @@
+diff -Nru isapnptools-1.23/doc/pnpdump.8 isapnptools-1.23.new/doc/pnpdump.8
+--- isapnptools-1.23/doc/pnpdump.8	Tue Jul 25 22:37:00 2000
++++ isapnptools-1.23.new/doc/pnpdump.8	Wed Jan  3 21:46:40 2001
+@@ -103,7 +103,7 @@
  attempt to determine safe settings to which the devices can be set,
  and uncomment those settings in the output.  pnpdump will use
  information in the /proc filesystem and the contents of the
@@ -74,7 +38,7 @@
  been allocated, if these facilities are available on the system.
  
  .br
-@@ -187,9 +187,9 @@
+@@ -199,9 +199,9 @@
  \fC/sbin/pnpdump\fR
  The executable.
  .TP
@@ -86,10 +50,11 @@
  The standard place for describing resources that are unavailable,
  but not flagged as such in /proc/* etc. The format of this file
  is explained in the example provided with \fBisapnptools\fP.
---- isapnptools-1.19/resource.c.wiget	Sat Oct 16 17:22:32 1999
-+++ isapnptools-1.19/resource.c	Sat Oct 30 03:40:33 1999
-@@ -27,7 +27,7 @@
- #include "pnp.h"
+diff -Nru isapnptools-1.23/src/resource.c isapnptools-1.23.new/src/resource.c
+--- isapnptools-1.23/src/resource.c	Tue Jul 25 22:37:00 2000
++++ isapnptools-1.23.new/src/resource.c	Wed Jan  3 21:47:06 2001
+@@ -37,7 +37,7 @@
+ #endif
  
  #ifndef GONEFILE
 -#define GONEFILE "/etc/isapnp.gone" /* File with unuseable resources */
