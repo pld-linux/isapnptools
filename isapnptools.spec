@@ -2,27 +2,34 @@ Summary:	Programs to configure ISA Plug-And-Play devices
 Summary(pl):	Narzêdzia do konfigurowania urz±dzeñ Plug-And-Play
 Name:		isapnptools
 Version:	1.18
-Release:	3
+Release:	4
 Copyright:	GPL
 Group:		Utilities/System
 Group(pl):	Narzêdzia/System
-URL:		ftp://ftp.demon.co.uk/pub/unix/linux/utils/
-Source:		%{name}-%{version}.tgz
-Patch:		%{name}.patch
+Source:		ftp://ftp.demon.co.uk/pub/unix/linux/utils/%{name}-%{version}.tgz
+Patch:		isapnptools.patch
 ExcludeArch:	sparc
 BuildRoot:	/tmp/%{name}-%{version}-root
 
 %description
-These programs allow ISA Plug-And-Play devices to be configured on a Linux
-machine.
+The isapnptools package contains utilities for configuring ISA Plug-and-Play
+(PnP) cards/boards which are in compliance with the PnP ISA Specification
+Version 1.0a. ISA PnP cards use registers instead of jumpers for setting
+the board address and interrupt assignments.  The cards also contain
+descriptions of the resources which need to be allocated.  The BIOS on your
+system, or isapnptools, uses a protocol described in the specification to
+find all of the PnP boards and allocate the resources so that none of them
+conflict.
 
-This program is suitable for all systems, whether or not they include a PnP
-BIOS. In fact, a PnP BIOS adds some complications because it may already
-activate some cards so that the drivers can find them, and these tools can
-unconfigure them, or change their settings causing all sorts of nasty
-effects. If you have (for example) plug and play network cards that already
-work, I suggest you read section 4 on the format of the configuration file
-below very carefully.
+Note that the BIOS doesn't do a very good job of allocating resources.  So
+isapnptools is suitable for all systems, whether or not they include a PnP
+BIOS. In fact, a PnP BIOS adds some complications.  A PnP BIOS may already
+activate some cards so that the drivers can find them.  Then these tools can
+unconfigure them or change their settings, causing all sorts of nasty
+effects. If you have PnP network cards that already work, you should read
+through the documentation files very carefully before you use isapnptools.
+
+Install isapnptools if you need utilities for configuring ISA PnP cards.
 
 %description -l pl
 Programy zawarte w tym pakiecie umo¿liwiaj± skonfigurowanie urz±dzeñ
@@ -32,27 +39,42 @@ Narzêdzia s± dostosowane do wszystkich systemów i nie wymagaj±
 posiadania BIOS-u obs³uguj±cego PnP.
 
 %prep
-%setup -q -n %{name}-%{version}
+%setup -q
 %patch -p1
 
 %build
-make CPPFLAGS="$RPM_OPT_FLAGS" LDFLAGS=-s
+make CPPFLAGS="$RPM_OPT_FLAGS" LDFLAGS="-s"
 
 %install
 rm -rf $RPM_BUILD_ROOT
 install -d $RPM_BUILD_ROOT/{sbin,usr/man/man5,usr/man/man8,etc/isapnp}
 
-make \
-    prefix=$RPM_BUILD_ROOT/usr \
-    INSTALLBINDIR=$RPM_BUILD_ROOT/sbin \
-    CONFDIR=$RPM_BUILD_ROOT/etc/isapnp \
-    install
+sed -e "s/^\([^#]\)/#\1/" < isapnp.gone > isapnp.tmp
+%ifarch alpha
+sed -e "s/#IRQ 7/IRQ 7/" < isapnp.tmp > isapnp.tmp2
+mv -f isapnp.tmp2 isapnp.tmp
+%endif 
+mv -f isapnp.tmp isapnp.gone
+
+make install \
+	prefix=$RPM_BUILD_ROOT/usr \
+	INSTALLBINDIR=$RPM_BUILD_ROOT/sbin \
+	CONFDIR=$RPM_BUILD_ROOT/etc/isapnp
 
 install *.conf $RPM_BUILD_ROOT/etc/isapnp
 
-gzip -9nf $RPM_BUILD_ROOT/usr/man/man*/*
-gzip -9nf CHANGES READ* *.txt config-scripts/YMH0021
+gzip -9nf $RPM_BUILD_ROOT/usr/man/man*/* \
+	CHANGES READ* *.txt config-scripts/YMH0021
 
+%post
+if [ -f /etc/isapnp/isapnp.conf ]; then
+        NEWPORT=`/sbin/pnpdump | grep READPORT 2>/dev/null`
+	if [ -n "$NEWPORT" ]; then
+	        mv -f /etc/isapnp/isapnp.conf /etc/isapnp/isapnp.conf.rpmsave
+		sed -e "s/^[^#]*(READPORT .*/$NEWPORT/" /etc/isapnp/isapnp.conf.rpmsave > \
+		/etc/isapnp/isapnp.conf
+	fi
+fi
 %clean
 rm -rf $RPM_BUILD_ROOT
 
@@ -66,6 +88,12 @@ rm -rf $RPM_BUILD_ROOT
 /usr/man/man[58]/*
 
 %changelog
+* Wed Apr 28 1999 Tomasz K³oczko <kloczek@rudy.mif.pg.gda.pl>
+  [1.18-4]
+- add /etc/isapnp/isapnp.gone,
+- default to not using IRQ 7 on alpha,
+- recompiled on new rpm.
+
 * Mon Apr 26 1999 Micha³ Kuratczyk <kura@pld.org.pl>
   [1.18-3]
 - removed man group from man pages
