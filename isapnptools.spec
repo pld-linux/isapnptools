@@ -45,7 +45,7 @@ posiadania BIOS-u obs³uguj±cego PnP.
 #%patch1 -p1
 
 %build
-make CPPFLAGS="$RPM_OPT_FLAGS" LDFLAGS="-s"
+%{__make} CPPFLAGS="$RPM_OPT_FLAGS" LDFLAGS="-s"
 
 %install
 rm -rf $RPM_BUILD_ROOT
@@ -58,7 +58,7 @@ mv -f isapnp.tmp2 isapnp.tmp
 %endif 
 mv -f isapnp.tmp isapnp.gone
 
-make install installdir=$RPM_BUILD_ROOT \
+%{__make} install installdir=$RPM_BUILD_ROOT \
 	INSTALLMANDIR=$RPM_BUILD_ROOT%{_mandir} 
 
 install *.conf $RPM_BUILD_ROOT/etc/isapnp
