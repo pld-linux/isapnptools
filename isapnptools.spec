@@ -10,6 +10,7 @@ Release:	6
 License:	GPL
 Group:		Applications/System
 Source0:	ftp://ftp.demon.co.uk/pub/unix/linux/utils/%{name}-%{version}.tgz
+# Source0-md5:	26def2016548edeafe383113f0bc8ac6
 Patch0:		%{name}-ac_fix.patch
 Patch1:		%{name}-getopt.patch
 URL:		http://www.roestock.demon.co.uk/isapnptools/
