@@ -1,0 +1,104 @@
+diff -urN isapnptools-1.18.orig/Makefile isapnptools-1.18/Makefile
+--- isapnptools-1.18.orig/Makefile	Mon Feb 15 00:22:13 1999
++++ isapnptools-1.18/Makefile	Thu Feb 18 12:37:35 1999
+@@ -28,7 +28,7 @@
+ #                glibc 2.0 or later.
+ #
+ #PNPFLAGS += -DREALTIME -DNEEDSETSCHEDULER -DNEEDNANOSLEEP
+-PNPFLAGS += -DREALTIME -DNEEDSETSCHEDULER
++PNPFLAGS += -DREALTIME
+ #
+ # Linux on ALPHA/AXP should already define this, but just in case..
+ #
+@@ -40,14 +40,14 @@
+ 
+ prefix=/usr
+ 
+-CONFDIR = /etc
++CONFDIR = /etc/isapnp
+ GONEFILE = isapnp.gone
+ INSTALLBINDIR = /sbin
+ INSTALLMANDIR = $(prefix)/man
+ INSTALLSHAREDIR=$(prefix)/share
+ INSTALLSCRIPTDIR=$(INSTALLSHAREDIR)/pnp/config-scripts/isa
+ 
+-CFLAGS = -O2 -Wall -DYY_NO_UNPUT $(PNPDUMPFLAGS) $(PNPFLAGS) -DGONEFILE=\"$(CONFDIR)/$(GONEFILE)\"
++CFLAGS = -Wall -DYY_NO_UNPUT $(PNPDUMPFLAGS) $(PNPFLAGS) -DGONEFILE=\"$(CONFDIR)/$(GONEFILE)\"
+ 
+ all:	pnpdump isapnp
+ 
+diff -urN isapnptools-1.18.orig/isapnp.8 isapnptools-1.18/isapnp.8
+--- isapnptools-1.18.orig/isapnp.8	Mon Feb 15 00:22:45 1999
++++ isapnptools-1.18/isapnp.8	Thu Feb 18 12:36:38 1999
+@@ -60,10 +60,10 @@
+ \fC/sbin/isapnp\fR
+ The executable.
+ .TP
+-\fC/etc/isapnp.conf\fR
++\fC/etc/isapnp/isapnp.conf\fR
+ The standard place for the \fIconffile\fP.
+ .TP
+-\fC/etc/isapnp.gone\fR
++\fC/etc/isapnp/isapnp.gone\fR
+ The standard place for describing resources that are unavailable,
+ but not flagged as such in /proc/* etc. The format of this file
+ is explained in the example provided with \fBisapnptools\fP.
+diff -urN isapnptools-1.18.orig/isapnp.conf.5 isapnptools-1.18/isapnp.conf.5
+--- isapnptools-1.18.orig/isapnp.conf.5	Mon Feb 15 00:22:45 1999
++++ isapnptools-1.18/isapnp.conf.5	Thu Feb 18 12:36:38 1999
+@@ -8,7 +8,7 @@
+ .SH NAME
+ isapnp.conf \- File format used by isapnp.
+ .SH SYNOPSIS
+-\fB/etc/isapnp.conf\fP
++\fB/etc/isapnp/isapnp.conf\fP
+ .SH DESCRIPTION
+ The \fBisapnp.conf\fP file is a configuration file for \fBisapnp\fP.
+ 
+diff -urN isapnptools-1.18.orig/isapnp.gone isapnptools-1.18/isapnp.gone
+--- isapnptools-1.18.orig/isapnp.gone	Mon Feb 15 00:22:45 1999
++++ isapnptools-1.18/isapnp.gone	Thu Feb 18 12:36:38 1999
+@@ -1,6 +1,6 @@
+ #------------------------------------------------------------------
+ #
+-# /etc/isapnp.gone
++# /etc/isapnp/isapnp.gone
+ #
+ #------------------------------------------------------------------
+ #
+diff -urN isapnptools-1.18.orig/pnpdump.8 isapnptools-1.18/pnpdump.8
+--- isapnptools-1.18.orig/pnpdump.8	Mon Feb 15 00:22:45 1999
++++ isapnptools-1.18/pnpdump.8	Thu Feb 18 12:36:38 1999
+@@ -85,7 +85,7 @@
+ .I "\-c, \-\-config"
+ attempt to determine safe settings to which the devices can be set,
+ and uncomment those settings in the output.  pnpdump will use the
+-/proc filesystem, the contents of the /etc/isapnp.gone file and the
++/proc filesystem, the contents of the /etc/isapnp/isapnp.gone file and the
+ lspci program to discover system resources that have already been
+ allocated if these facilities are available on the system.
+ .TP
+@@ -152,9 +152,9 @@
+ \fC/sbin/pnpdump\fR
+ The executable.
+ .TP
+-\fC/etc/isapnp.conf\fR
++\fC/etc/isapnp/isapnp.conf\fR
+ The resting place of the editted output.
+-\fC/etc/isapnp.gone\fR
++\fC/etc/isapnp/isapnp.gone\fR
+ The standard place for describing resources that are unavailable,
+ but not flagged as such in /proc/* etc. The format of this file
+ is explained in the example provided with \fBisapnptools\fP.
+diff -urN isapnptools-1.18.orig/resource.c isapnptools-1.18/resource.c
+--- isapnptools-1.18.orig/resource.c	Mon Feb 15 00:22:15 1999
++++ isapnptools-1.18/resource.c	Thu Feb 18 12:36:38 1999
+@@ -25,7 +25,7 @@
+ #include "pnp.h"
+ 
+ #ifndef GONEFILE
+-#define GONEFILE "/etc/isapnp.gone" /* File with unuseable resources */
++#define GONEFILE "/etc/isapnp/isapnp.gone" /* File with unuseable resources */
+ #endif
+ 
+ #define ASSERT(x)	/* as nothing for now */
