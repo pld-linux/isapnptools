@@ -1,14 +1,16 @@
-Summary:     Programs to configure ISA Plug-And-Play devices on a linux machine.
-Name:        isapnptools
-Version:     1.18
-Release:     1d
-Copyright:   GPL
-Group:       Utilities/System
-Source:      ftp://ftp.demon.co.uk/pub/unix/linux/utils/%{name}-%{version}.tgz
-Patch:       %{name}.patch
-ExcludeArch: sparc
-BuildRoot:   /tmp/buildroot-%{name}-%{version}
-Summary(pl): Narzêdzia do konfigurowania urz±dzeñ Plug-And-Play.
+Summary:	Programs to configure ISA Plug-And-Play devices
+Summary(pl):	Narzêdzia do konfigurowania urz±dzeñ Plug-And-Play
+Name:		isapnptools
+Version:	1.18
+Release:	2
+Copyright:	GPL
+Group:		Utilities/System
+Group(pl):	Narzêdzia/System
+URL:		ftp://ftp.demon.co.uk/pub/unix/linux/utils/
+Source:		%{name}-%{version}.tgz
+Patch0:		%{name}.patch
+ExcludeArch:	sparc
+BuildRoot:	/tmp/buildroot-%{name}-%{version}
 
 %description
 These programs allow ISA Plug-And-Play devices to be configured on a Linux
@@ -44,52 +46,40 @@ rm -rf $RPM_BUILD_ROOT
 
 install -d $RPM_BUILD_ROOT/{sbin,usr/man/man5,usr/man/man8,etc/isapnp}
 
-make prefix=$RPM_BUILD_ROOT/usr \
-INSTALLBINDIR=$RPM_BUILD_ROOT/sbin CONFDIR=$RPM_BUILD_ROOT/etc/isapnp install
+make \
+    prefix=$RPM_BUILD_ROOT/usr \
+    INSTALLBINDIR=$RPM_BUILD_ROOT/sbin \
+    CONFDIR=$RPM_BUILD_ROOT/etc/isapnp \
+    install
 
 install *.conf $RPM_BUILD_ROOT/etc/isapnp
+
 gzip -9nf $RPM_BUILD_ROOT/usr/man/man*/*
+bzip2 -9 CHANGES READ* *.txt config-scripts/YMH0021
 
 %clean
 rm -rf $RPM_BUILD_ROOT
 
 %files
 %defattr(644,root,root,755)
-%doc CHANGES READ* README.modules *.txt *.lsm config-scripts/YMH0021
+%doc CHANGES.bz2 READ* *.txt.bz2 
+%doc config-scripts/YMH0021.bz2
 
 %attr(750,root,root) %dir /etc/isapnp
-%attr(640,root,root) %config(noreplace) %verify(not size mtime md5) /etc/isapnp/*
+%attr(640,root,root) %config %verify(not size mtime md5) /etc/isapnp/*
 
-%attr(711,root,root) /sbin/*
+%attr(755,root,root) /sbin/*
 %attr(644,root, man) /usr/man/man[58]/*
 
 %changelog
 * Thu Feb 18 1999 Arkadiusz Mi¶kiewicz <misiek@misiek.eu.org>
-[1.18-1d]
+  [1.18-1d]
 - new version
 - compressed manual pages
 
 * Sun Sep 27 1998 Marcin Korzonek <mkorz@shadow.eu.org>
-[1.15-3d]
+  [1.15-3d]
 - translation modified for pl,
-- defined files permission.
-
-* Thu Sep 24 1998 Bill Nottingham <notting@redhat.com>
-- fixed spec file so it rebuild cleanly
-
-* Fri Aug 07 1998 Bill Nottingham <notting@redhat.com>
-- added patch to bump to 1.15a
-
-* Tue Aug 04 1998 Bill Nottingham <notting@redhat.com>
-- updated to version 1.15
-
-* Fri Oct 03 1997 Michael Fulbright <msf@redhat.com>
-- added code to avoid probing in IO port ranges in /proc/ioports
-
-* Fri Aug 22 1997 Mike Wangsmo <wanger@redhat.com>
-- Built against glibc
-
-* Thu Jul 17 1997 Timo Karjalainen <timok@iki.fi>
-- Updated to version 1.11
-- Added RPM_OPT_FLAGS
-- Uses BuildRoot
+- defined files permission,
+- build against GNU libc-2.1,
+- startet at RH spec.
