@@ -15,7 +15,9 @@ URL:		http://www.roestock.demon.co.uk/isapnptools/
 BuildRequires:	autoconf
 BuildRequires:	automake
 BuildRequires:	flex
-Prereq:		sed
+Requires(post):	fileutils
+Requires(post):	grep
+Requires(post):	sed
 ExclusiveArch:	%{ix86} alpha
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
@@ -112,8 +114,10 @@ isapnptools п╕дходить для вс╕х систем, незалежно в╕д того, чи
 перед використанням isapnptools.
 
 %package devel
+Summary:	Development ISA PnP libraries
+Summary(pl):	Biblioteki ISA PnP dla programistСw
 Group:		Development/Libraries
-PreReq:		%{name} = %{version}
+Requires:	%{name} = %{version}
 
 %description devel
 Development libraries for configuring ISA Plug-and-Play (PnP) devices.
@@ -146,12 +150,13 @@ install etc/* $RPM_BUILD_ROOT%{_sysconfdir}
 rm -rf $RPM_BUILD_ROOT
 
 %post
-if [ -f  %{_sysconfdir}/isapnp.conf ]; then
+if [ -f %{_sysconfdir}/isapnp.conf ]; then
         NEWPORT=`%{_sbindir}/pnpdump | grep READPORT 2>/dev/null`
 	if [ -n "$NEWPORT" ]; then
-	        mv -f  %{_sysconfdir}/isapnp.conf  %{_sysconfdir}/isapnp.conf.rpmsave
-		sed -e "s/^[^#]*(READPORT .*/$NEWPORT/"  %{_sysconfdir}/isapnp.conf.rpmsave > \
-		%{_sysconfdir}/isapnp.conf
+		umask 027
+	        mv -f  %{_sysconfdir}/isapnp.conf %{_sysconfdir}/isapnp.conf.rpmsave
+		sed -e "s/^[^#]*(READPORT .*/$NEWPORT/" %{_sysconfdir}/isapnp.conf.rpmsave > \
+			%{_sysconfdir}/isapnp.conf
 	fi
 fi
 
@@ -159,11 +164,12 @@ fi
 %defattr(644,root,root,755)
 %doc ChangeLog NEWS README config-scripts/YMH0021
 %attr(750,root,root) %dir %{_sysconfdir}
-%attr(640,root,root) %config %verify(not size mtime md5) %{_sysconfdir}/*
+%attr(640,root,root) %config(noreplace) %verify(not size mtime md5) %{_sysconfdir}/*
 %attr(755,root,root) %{_sbindir}/*
 %{_mandir}/man[58]/*
 
 %files devel
 %defattr(644,root,root,755)
 %{_libdir}/*.a
+%dir %{_includedir}/isapnp
 %{_includedir}/isapnp/*.h
