@@ -63,7 +63,7 @@ make install \
 
 install *.conf $RPM_BUILD_ROOT/etc/isapnp
 
-gzip -9nf $RPM_BUILD_ROOT/usr/man/man*/* \
+gzip -9nf $RPM_BUILD_ROOT%{_mandir}/man*/* \
 	CHANGES READ* *.txt config-scripts/YMH0021
 
 %post
@@ -85,7 +85,7 @@ rm -rf $RPM_BUILD_ROOT
 %attr(750,root,root) %dir /etc/isapnp
 %attr(640,root,root) %config %verify(not size mtime md5) /etc/isapnp/*
 %attr(755,root,root) /sbin/*
-/usr/man/man[58]/*
+%{_mandir}/man[58]/*
 
 %changelog
 * Wed Apr 28 1999 Tomasz K³oczko <kloczek@rudy.mif.pg.gda.pl>
