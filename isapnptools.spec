@@ -5,8 +5,6 @@ Version:	1.26
 Release:	2
 License:	GPL
 Group:		Applications/System
-Group(de):	Applikationen/System
-Group(pl):	Aplikacje/System
 Source0:	ftp://ftp.demon.co.uk/pub/unix/linux/utils/%{name}-%{version}.tgz
 URL:		http://www.roestock.demon.co.uk/isapnptools/
 BuildRequires:	flex
