@@ -11,6 +11,7 @@ License:	GPL
 Group:		Applications/System
 Source0:	ftp://ftp.demon.co.uk/pub/unix/linux/utils/%{name}-%{version}.tgz
 Patch0:		%{name}-ac_fix.patch
+Patch1:		%{name}-getopt.patch
 URL:		http://www.roestock.demon.co.uk/isapnptools/
 BuildRequires:	autoconf
 BuildRequires:	automake
@@ -128,11 +129,13 @@ Plug-and-Play (PnP).
 %prep
 %setup -q
 %patch0 -p1
+%patch1 -p1
 
 %build
 rm -f missing
 %{__aclocal}
 %{__autoconf}
+%{__autoheader}
 %{__automake}
 %configure
 %{__make}
