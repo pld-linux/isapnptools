@@ -2,7 +2,7 @@ Summary:	Programs to configure ISA Plug-And-Play devices
 Summary(pl):	Narzêdzia do konfigurowania urz±dzeñ Plug-And-Play
 Name:		isapnptools
 Version:	1.26
-Release:	2
+Release:	3
 License:	GPL
 Group:		Applications/System
 Source0:	ftp://ftp.demon.co.uk/pub/unix/linux/utils/%{name}-%{version}.tgz
@@ -58,8 +58,6 @@ install -d $RPM_BUILD_ROOT%{_sysconfdir}
 
 install etc/* $RPM_BUILD_ROOT%{_sysconfdir}
 
-gzip -9nf ChangeLog NEWS README config-scripts/YMH0021
-
 %clean
 rm -rf $RPM_BUILD_ROOT
 
@@ -75,7 +73,7 @@ fi
 
 %files
 %defattr(644,root,root,755)
-%doc *.gz config-scripts/*.gz
+%doc ChangeLog NEWS README config-scripts/YMH0021
 %attr(750,root,root) %dir %{_sysconfdir}
 %attr(640,root,root) %config %verify(not size mtime md5) %{_sysconfdir}/*
 %attr(755,root,root) %{_sbindir}/*
