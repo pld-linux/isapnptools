@@ -1,13 +1,12 @@
 Summary:     Programs to configure ISA Plug-And-Play devices on a linux machine.
 Summary(pl): Narzêdzia do konfigurowania urz±dzeñ Plug-And-Play.
 Name:        isapnptools
-Version:     1.15a
-Release:     3
+Version:     1.17
+Release:     1
 Copyright:   GPL
 Group:       Utilities/System
-Source:      ftp://ftp.demon.co.uk/pub/unix/linux/utils/%{name}-1.15.tgz
-Patch:       isapnptools-1.15.patch
-Patch1:      patch-1.15a
+Source:      ftp://ftp.demon.co.uk/pub/unix/linux/utils/%{name}-%{version}.tgz
+Patch:       isapnptools-cfg.patch
 ExcludeArch: sparc
 BuildRoot:   /tmp/%{name}-%{version}-root
 
@@ -31,10 +30,8 @@ Narzêdzia s± dostosowane do wszystkich systemów i nie wymagaj±
 posiadania BIOS-u obs³uguj±cego PnP.
 
 %prep
-%setup -q -n isapnptools-1.15
-
+%setup -q
 %patch -p1
-%patch1 -p0
 
 %build
 make
@@ -43,7 +40,9 @@ make
 rm -rf $RPM_BUILD_ROOT
 install -d $RPM_BUILD_ROOT/{sbin,usr/man/man5,usr/man/man8,etc}
 
-make DESTDIR=$RPM_BUILD_ROOT install
+make install \
+	prefix=$RPM_BUILD_ROOT/usr \
+	INSTALLBINDIR=$RPM_BUILD_ROOT/sbin
 
 %clean
 rm -rf $RPM_BUILD_ROOT
