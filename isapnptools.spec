@@ -10,6 +10,7 @@ Group(pl):	Aplikacje/System
 Source0:	ftp://ftp.demon.co.uk/pub/unix/linux/utils/%{name}-%{version}.tgz
 URL:		http://www.roestock.demon.co.uk/isapnptools/
 BuildRequires:	flex
+BuildRequires:	autoconf
 Prereq:		sed
 ExcludeArch:	sparc
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
@@ -61,6 +62,9 @@ install etc/* $RPM_BUILD_ROOT%{_sysconfdir}
 
 gzip -9nf ChangeLog NEWS README config-scripts/YMH0021
 
+%clean
+rm -rf $RPM_BUILD_ROOT
+
 %post
 if [ -f  %{_sysconfdir}/isapnp.conf ]; then
         NEWPORT=`%{_sbindir}/pnpdump | grep READPORT 2>/dev/null`
@@ -70,9 +74,6 @@ if [ -f  %{_sysconfdir}/isapnp.conf ]; then
 		%{_sysconfdir}/isapnp.conf
 	fi
 fi
-
-%clean
-rm -rf $RPM_BUILD_ROOT
 
 %files
 %defattr(644,root,root,755)
