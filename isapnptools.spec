@@ -87,28 +87,3 @@ rm -rf $RPM_BUILD_ROOT
 %attr(640,root,root) %config %verify(not size mtime md5) /etc/isapnp/*
 %attr(755,root,root) /sbin/*
 %{_mandir}/man[58]/*
-
-%changelog
-* Wed Apr 28 1999 Tomasz K³oczko <kloczek@rudy.mif.pg.gda.pl>
-  [1.18-4]
-- add /etc/isapnp/isapnp.gone,
-- default to not using IRQ 7 on alpha,
-- recompiled on new rpm.
-
-* Mon Apr 26 1999 Micha³ Kuratczyk <kura@pld.org.pl>
-  [1.18-3]
-- removed man group from man pages
-- gzipping documentation instead bzipping
-- added LDFLAGS=-s
-
-* Thu Feb 18 1999 Arkadiusz Mi¶kiewicz <misiek@misiek.eu.org>
-  [1.18-1d]
-- new version
-- compressed manual pages
-
-* Sun Sep 27 1998 Marcin Korzonek <mkorz@shadow.eu.org>
-  [1.15-3d]
-- translation modified for pl,
-- defined files permission,
-- build against GNU libc-2.1,
-- startet at RH spec.
