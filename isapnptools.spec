@@ -1,7 +1,7 @@
 Summary:	Programs to configure ISA Plug-And-Play devices
 Summary(pl):	Narzêdzia do konfigurowania urz±dzeñ Plug-And-Play
 Name:		isapnptools
-Version:	1.25
+Version:	1.26
 Release:	1
 License:	GPL
 Group:		Applications/System
