@@ -6,7 +6,7 @@ Summary(ru):	Программы для конфигурации ISA Plug-and-Play (PnP) устройств
 Summary(uk):	Програми для конф╕гурац╕╖ ISA Plug-and-Play (PnP) пристро╖в
 Name:		isapnptools
 Version:	1.26
-Release:	4
+Release:	5
 License:	GPL
 Group:		Applications/System
 Source0:	ftp://ftp.demon.co.uk/pub/unix/linux/utils/%{name}-%{version}.tgz
@@ -117,7 +117,6 @@ isapnptools п╕дходить для вс╕х систем, незалежно в╕д того, чи
 Summary:	Development ISA PnP libraries
 Summary(pl):	Biblioteki ISA PnP dla programistСw
 Group:		Development/Libraries
-Requires:	%{name} = %{version}
 
 %description devel
 Development libraries for configuring ISA Plug-and-Play (PnP) devices.
