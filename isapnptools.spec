@@ -10,9 +10,11 @@ Release:	3
 License:	GPL
 Group:		Applications/System
 Source0:	ftp://ftp.demon.co.uk/pub/unix/linux/utils/%{name}-%{version}.tgz
+Patch0:		%{name}-ac_fix.patch
 URL:		http://www.roestock.demon.co.uk/isapnptools/
-BuildRequires:	flex
 BuildRequires:	autoconf
+BuildRequires:	automake
+BuildRequires:	flex
 Prereq:		sed
 ExcludeArch:	sparc
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
@@ -105,11 +107,42 @@ isapnptools п╕дходить для вс╕х систем, незалежно в╕д того, чи включають
 вам сл╕д прочитати файли документац╕╖ дуже уважно перед використанням
 isapnptools.
 
+%package devel
+Summary:	Devel librairies for configuring ISA Plug-and-Play (PnP) devices
+Group:		Development/Libraries
+PreReq:		%{name} = %{version}
+
+%description devel
+The isapnptools package contains utilities for configuring ISA
+Plug-and-Play (PnP) cards which are in compliance with the PnP ISA
+Specification Version 1.0a.  ISA PnP cards use registers instead of
+jumpers for setting the board address and interrupt assignments.  The
+cards also contain descriptions of the resources which need to be
+allocated.  The BIOS on your system, or isapnptools, uses a protocol
+described in the specification to find all of the PnP boards and
+allocate the resources so that none of them conflict.
+
+Note that the BIOS doesn't do a very good job of allocating resources.
+So isapnptools is suitable for all systems, whether or not they
+include a PnP BIOS. In fact, a PnP BIOS adds some complications.  A
+PnP BIOS may already activate some cards so that the drivers can find
+them.  Then these tools can unconfigure them or change their settings,
+causing all sorts of nasty effects. If you have PnP network cards that
+already work, you should read through the documentation files very
+carefully before you use isapnptools.
+
+Install isapnptools-devel if you need to do development with ISA PnP
+cards.
+
 %prep
 %setup -q
+%patch0 -p1
 
 %build
+rm -f missing
+aclocal
 %{__autoconf}
+%{__automake}
 %configure
 %{__make}
 
@@ -141,3 +174,8 @@ fi
 %attr(640,root,root) %config %verify(not size mtime md5) %{_sysconfdir}/*
 %attr(755,root,root) %{_sbindir}/*
 %{_mandir}/man[58]/*
+
+%files devel
+%defattr(644,root,root,755)
+%{_libdir}/*.a
+%{_includedir}/isapnp/*.h
