@@ -1,8 +1,8 @@
 Summary:	Programs to configure ISA Plug-And-Play devices
 Summary(pl):	Narzêdzia do konfigurowania urz±dzeñ Plug-And-Play
 Name:		isapnptools
-Version:	1.18
-Release:	4
+Version:	1.19
+Release:	1
 Copyright:	GPL
 Group:		Utilities/System
 Group(pl):	Narzêdzia/System
@@ -41,8 +41,8 @@ posiadania BIOS-u obs³uguj±cego PnP.
 
 %prep
 %setup -q
-%patch0 -p1
-%patch1 -p1
+%patch0 -p1 -b .wiget
+#%patch1 -p1
 
 %build
 make CPPFLAGS="$RPM_OPT_FLAGS" LDFLAGS="-s"
@@ -58,8 +58,8 @@ mv -f isapnp.tmp2 isapnp.tmp
 %endif 
 mv -f isapnp.tmp isapnp.gone
 
-make install DESTDIR=$RPM_BUILD_ROOT \
-	INSTALLMANDIR=%{_mandir} \
+make install installdir=$RPM_BUILD_ROOT \
+	INSTALLMANDIR=$RPM_BUILD_ROOT%{_mandir} 
 
 install *.conf $RPM_BUILD_ROOT/etc/isapnp
 
