@@ -10,7 +10,7 @@ Source:		ftp://ftp.demon.co.uk/pub/unix/linux/utils/%{name}-%{version}.tgz
 Patch0:		isapnptools.patch
 Patch1:		isapnptools-DESTDIR.patch
 ExcludeArch:	sparc
-BuildRoot:	/tmp/%{name}-%{version}-root
+BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %description
 The isapnptools package contains utilities for configuring ISA Plug-and-Play
