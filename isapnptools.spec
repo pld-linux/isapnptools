@@ -7,7 +7,8 @@ Copyright:	GPL
 Group:		Utilities/System
 Group(pl):	Narzêdzia/System
 Source:		ftp://ftp.demon.co.uk/pub/unix/linux/utils/%{name}-%{version}.tgz
-Patch:		isapnptools.patch
+Patch0:		isapnptools.patch
+Patch1:		isapnptools-DESTDIR.patch
 ExcludeArch:	sparc
 BuildRoot:	/tmp/%{name}-%{version}-root
 
@@ -40,14 +41,15 @@ posiadania BIOS-u obs³uguj±cego PnP.
 
 %prep
 %setup -q
-%patch -p1
+%patch0 -p1
+%patch1 -p1
 
 %build
 make CPPFLAGS="$RPM_OPT_FLAGS" LDFLAGS="-s"
 
 %install
 rm -rf $RPM_BUILD_ROOT
-install -d $RPM_BUILD_ROOT/{sbin,usr/man/man5,usr/man/man8,etc/isapnp}
+install -d $RPM_BUILD_ROOT{/sbin,%{_mandir}/man{5,8},/etc/isapnp}
 
 sed -e "s/^\([^#]\)/#\1/" < isapnp.gone > isapnp.tmp
 %ifarch alpha
@@ -56,10 +58,8 @@ mv -f isapnp.tmp2 isapnp.tmp
 %endif 
 mv -f isapnp.tmp isapnp.gone
 
-make install \
-	prefix=$RPM_BUILD_ROOT/usr \
-	INSTALLBINDIR=$RPM_BUILD_ROOT/sbin \
-	CONFDIR=$RPM_BUILD_ROOT/etc/isapnp
+make install DESTDIR=$RPM_BUILD_ROOT \
+	INSTALLMANDIR=%{_mandir} \
 
 install *.conf $RPM_BUILD_ROOT/etc/isapnp
 
@@ -75,6 +75,7 @@ if [ -f /etc/isapnp/isapnp.conf ]; then
 		/etc/isapnp/isapnp.conf
 	fi
 fi
+
 %clean
 rm -rf $RPM_BUILD_ROOT
 
