@@ -1,36 +1,40 @@
 Summary:	Programs to configure ISA Plug-And-Play devices
 Summary(pl):	Narzêdzia do konfigurowania urz±dzeñ Plug-And-Play
 Name:		isapnptools
-Version:	1.22
+Version:	1.23
 Release:	1
-Copyright:	GPL
-Group:		Utilities/System
-Group(pl):	Narzêdzia/System
-Source:		ftp://ftp.demon.co.uk/pub/unix/linux/utils/%{name}-%{version}.tgz
-Patch0:		isapnptools.patch
-Patch1:		isapnptools-DESTDIR.patch
+License:	GPL
+Group:		Applications/System
+Group(de):	Applikationen/System
+Group(pl):	Aplikacje/System
+Source0:	ftp://ftp.demon.co.uk/pub/unix/linux/utils/%{name}-%{version}.tgz
+Patch0:		%{name}-pnpdump_main.patch
+URL:		http://www.roestock.demon.co.uk/isapnptools/
+Prereq:		sed
 ExcludeArch:	sparc
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
+%define		_sbindir	/sbin
+%define		_sysconfdir	/etc/isapnp
+
 %description
-The isapnptools package contains utilities for configuring ISA Plug-and-Play
-(PnP) cards/boards which are in compliance with the PnP ISA Specification
-Version 1.0a. ISA PnP cards use registers instead of jumpers for setting
-the board address and interrupt assignments.  The cards also contain
-descriptions of the resources which need to be allocated.  The BIOS on your
-system, or isapnptools, uses a protocol described in the specification to
-find all of the PnP boards and allocate the resources so that none of them
-conflict.
+The isapnptools package contains utilities for configuring ISA
+Plug-and-Play (PnP) cards/boards which are in compliance with the PnP
+ISA Specification Version 1.0a. ISA PnP cards use registers instead of
+jumpers for setting the board address and interrupt assignments. The
+cards also contain descriptions of the resources which need to be
+allocated. The BIOS on your system, or isapnptools, uses a protocol
+described in the specification to find all of the PnP boards and
+allocate the resources so that none of them conflict.
 
-Note that the BIOS doesn't do a very good job of allocating resources.  So
-isapnptools is suitable for all systems, whether or not they include a PnP
-BIOS. In fact, a PnP BIOS adds some complications.  A PnP BIOS may already
-activate some cards so that the drivers can find them.  Then these tools can
-unconfigure them or change their settings, causing all sorts of nasty
-effects. If you have PnP network cards that already work, you should read
-through the documentation files very carefully before you use isapnptools.
-
-Install isapnptools if you need utilities for configuring ISA PnP cards.
+Note that the BIOS doesn't do a very good job of allocating resources.
+So isapnptools is suitable for all systems, whether or not they
+include a PnP BIOS. In fact, a PnP BIOS adds some complications. A PnP
+BIOS may already activate some cards so that the drivers can find
+them. Then these tools can unconfigure them or change their settings,
+causing all sorts of nasty effects. If you have PnP network cards that
+already work, you should read through the documentation files very
+carefully before you use isapnptools.
 
 %description -l pl
 Programy zawarte w tym pakiecie umo¿liwiaj± skonfigurowanie urz±dzeñ
@@ -41,38 +45,29 @@ posiadania BIOS-u obs³uguj±cego PnP.
 
 %prep
 %setup -q
-%patch0 -p1 -b .wiget
-#%patch1 -p1
+%patch -p1
 
 %build
-%{__make} CPPFLAGS="$RPM_OPT_FLAGS" LDFLAGS="-s"
+%configure
+%{__make}
 
 %install
 rm -rf $RPM_BUILD_ROOT
-install -d $RPM_BUILD_ROOT{/sbin,%{_mandir}/man{5,8},/etc/isapnp}
+install -d $RPM_BUILD_ROOT%{_sysconfdir}
 
-sed -e "s/^\([^#]\)/#\1/" < isapnp.gone > isapnp.tmp
-%ifarch alpha
-sed -e "s/#IRQ 7/IRQ 7/" < isapnp.tmp > isapnp.tmp2
-mv -f isapnp.tmp2 isapnp.tmp
-%endif 
-mv -f isapnp.tmp isapnp.gone
+%{__make} install DESTDIR=$RPM_BUILD_ROOT
 
-%{__make} install installdir=$RPM_BUILD_ROOT \
-	INSTALLMANDIR=$RPM_BUILD_ROOT%{_mandir} 
+install etc/* $RPM_BUILD_ROOT%{_sysconfdir}
 
-install *.conf $RPM_BUILD_ROOT/etc/isapnp
-
-gzip -9nf $RPM_BUILD_ROOT%{_mandir}/man*/* \
-	CHANGES READ* *.txt config-scripts/YMH0021
+gzip -9nf ChangeLog NEWS README config-scripts/YMH0021
 
 %post
-if [ -f /etc/isapnp/isapnp.conf ]; then
-        NEWPORT=`/sbin/pnpdump | grep READPORT 2>/dev/null`
+if [ -f  %{_sysconfdir}/isapnp.conf ]; then
+        NEWPORT=`%{_sbindir}/pnpdump | grep READPORT 2>/dev/null`
 	if [ -n "$NEWPORT" ]; then
-	        mv -f /etc/isapnp/isapnp.conf /etc/isapnp/isapnp.conf.rpmsave
-		sed -e "s/^[^#]*(READPORT .*/$NEWPORT/" /etc/isapnp/isapnp.conf.rpmsave > \
-		/etc/isapnp/isapnp.conf
+	        mv -f  %{_sysconfdir}/isapnp.conf  %{_sysconfdir}/isapnp.conf.rpmsave
+		sed -e "s/^[^#]*(READPORT .*/$NEWPORT/"  %{_sysconfdir}/isapnp.conf.rpmsave > \
+		%{_sysconfdir}/isapnp.conf
 	fi
 fi
 
@@ -81,9 +76,8 @@ rm -rf $RPM_BUILD_ROOT
 
 %files
 %defattr(644,root,root,755)
-%doc {CHANGES,READ*,*.txt,config-scripts/YMH0021}.gz
-
-%attr(750,root,root) %dir /etc/isapnp
-%attr(640,root,root) %config %verify(not size mtime md5) /etc/isapnp/*
-%attr(755,root,root) /sbin/*
+%doc *.gz config-scripts/*.gz
+%attr(750,root,root) %dir %{_sysconfdir}
+%attr(640,root,root) %config %verify(not size mtime md5) %{_sysconfdir}/*
+%attr(755,root,root) %{_sbindir}/*
 %{_mandir}/man[58]/*
