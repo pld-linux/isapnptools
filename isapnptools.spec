@@ -10,6 +10,7 @@ Group(pl):	Aplikacje/System
 Source0:	ftp://ftp.demon.co.uk/pub/unix/linux/utils/%{name}-%{version}.tgz
 Patch0:		%{name}-pnpdump_main.patch
 URL:		http://www.roestock.demon.co.uk/isapnptools/
+BuildRequires:	flex
 Prereq:		sed
 ExcludeArch:	sparc
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
