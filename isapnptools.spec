@@ -46,7 +46,7 @@ posiadania BIOS-u obs³uguj±cego PnP.
 %setup -q
 
 %build
-autoconf
+%{__autoconf}
 %configure
 %{__make}
 
