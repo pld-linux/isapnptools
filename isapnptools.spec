@@ -2,7 +2,7 @@ Summary:	Programs to configure ISA Plug-And-Play devices
 Summary(pl):	Narzêdzia do konfigurowania urz±dzeñ Plug-And-Play
 Name:		isapnptools
 Version:	1.26
-Release:	1
+Release:	2
 License:	GPL
 Group:		Applications/System
 Group(de):	Applikationen/System
@@ -47,6 +47,7 @@ posiadania BIOS-u obs³uguj±cego PnP.
 %setup -q
 
 %build
+autoconf
 %configure
 %{__make}
 
