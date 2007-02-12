@@ -1,9 +1,9 @@
 Summary:	Programs to configure ISA Plug-and-Play devices
-Summary(es):	Programas para configurar dispositivos Plug-and-Play ISA en una mАquina linux
-Summary(pl):	NarzЙdzia do konfigurowania urz╠dzeЯ Plug-and-Play
-Summary(pt_BR):	Programas para configurar dispositivos Plug-and-Play ISA numa mАquina Linux
-Summary(ru):	Программы для конфигурации ISA Plug-and-Play (PnP) устройств
-Summary(uk):	Програми для конф╕гурац╕╖ ISA Plug-and-Play (PnP) пристро╖в
+Summary(es.UTF-8):   Programas para configurar dispositivos Plug-and-Play ISA en una mц║quina linux
+Summary(pl.UTF-8):   Narzд≥dzia do konfigurowania urzд┘dzeе└ Plug-and-Play
+Summary(pt_BR.UTF-8):   Programas para configurar dispositivos Plug-and-Play ISA numa mц║quina Linux
+Summary(ru.UTF-8):   п÷я─п╬пЁя─п╟п╪п╪я▀ п╢п╩я▐ п╨п╬п╫я└п╦пЁя┐я─п╟я├п╦п╦ ISA Plug-and-Play (PnP) я┐я│я┌я─п╬п╧я│я┌п╡
+Summary(uk.UTF-8):   п÷я─п╬пЁя─п╟п╪п╦ п╢п╩я▐ п╨п╬п╫я└я√пЁя┐я─п╟я├я√я≈ ISA Plug-and-Play (PnP) п©я─п╦я│я┌я─п╬я≈п╡
 Name:		isapnptools
 Version:	1.26
 Release:	6
@@ -45,86 +45,86 @@ causing all sorts of nasty effects. If you have PnP network cards that
 already work, you should read through the documentation files very
 carefully before you use isapnptools.
 
-%description -l es
+%description -l es.UTF-8
 Estos programas permiten que dispositivos ISA Plug-and-Play sean
-configurados en una mАquina Linux. Este programa es apropiado para
-todos los sistemas, incluso cuando no tienen un BIOS PnP. AdemАs, un
+configurados en una mц║quina Linux. Este programa es apropiado para
+todos los sistemas, incluso cuando no tienen un BIOS PnP. Ademц║s, un
 BIOS PnP adiciona algunas complicaciones, porque puede ya tener
 activado algunas tarjetas de modo que los drivers las pueden
-encontrar, y las herramientas de este paquete pueden desconfigЗralas,
+encontrar, y las herramientas de este paquete pueden desconfigц╨ralas,
 o cambiar sus configuraciones causando efectos desagradables. Si
 tienes (por ejemplo) tarjetas de red plug and play que ya funcionan,
-sugiero que leas con cuidado la pАgina de manual isapnp.conf(5), sobre
-el formato del archivo de configuraciСn.
+sugiero que leas con cuidado la pц║gina de manual isapnp.conf(5), sobre
+el formato del archivo de configuraciцЁn.
 
-%description -l pl
-Programy zawarte w tym pakiecie umo©liwiaj╠ skonfigurowanie urz╠dzeЯ
-Plug-and-Play podЁ╠czonych do szyny ISA.
+%description -l pl.UTF-8
+Programy zawarte w tym pakiecie umoе╪liwiajд┘ skonfigurowanie urzд┘dzeе└
+Plug-and-Play podе┌д┘czonych do szyny ISA.
 
-NarzЙdzia s╠ dostosowane do wszystkich systemСw i nie wymagaj╠
-posiadania BIOS-u obsЁuguj╠cego PnP.
+Narzд≥dzia sд┘ dostosowane do wszystkich systemцЁw i nie wymagajд┘
+posiadania BIOS-u obsе┌ugujд┘cego PnP.
 
-%description -l pt_BR
+%description -l pt_BR.UTF-8
 Estes programas permitem que dispositivos ISA Plug-and-Play sejam
-configurados numa mАquina Linux.
+configurados numa mц║quina Linux.
 
-Este programa И apropriado para todos os sistemas, mesmo que nЦo
-tenham um BIOS PnP. AliАs, um BIOS PnP adiciona algumas complicaГУes,
-porque jА pode ter ativado algumas placas de modo que os drivers
-possam achА-las, e as ferramentas deste pacote podem desconfigurА-las,
-ou mudar suas configuraГУes causando efeitos desagradАveis. Se vocЙ
-tiver (por exemplo) placas de rede plug and play que jА funcionam,
-sugiro que vocЙ leia com cuidado a pАgina de manual isapnp.conf(5),
-sobre o formato do arquivo de configuraГЦo.
+Este programa ц╘ apropriado para todos os sistemas, mesmo que nцёo
+tenham um BIOS PnP. Aliц║s, um BIOS PnP adiciona algumas complicaц╖ц╣es,
+porque jц║ pode ter ativado algumas placas de modo que os drivers
+possam achц║-las, e as ferramentas deste pacote podem desconfigurц║-las,
+ou mudar suas configuraц╖ц╣es causando efeitos desagradц║veis. Se vocц╙
+tiver (por exemplo) placas de rede plug and play que jц║ funcionam,
+sugiro que vocц╙ leia com cuidado a pц║gina de manual isapnp.conf(5),
+sobre o formato do arquivo de configuraц╖цёo.
 
-%description -l ru
-Пакет isapnptools содержит утилиты для конфигурирования ISA
-Plug-and-Play (PnP) карт, отвечающих стандарту PnP ISA Specification
-Version 1.0a. Карты ISA PnP используют регистры вместо переключателей
-для установки адреса платы и присвоения номера прерывания. Карты также
-содержат описание ресурсов, которые необходимо выделить. BIOS вашей
-машины или isapnptools используют протокол описанный в спецификации
-для нахождения всех плат PnP и выделения ресурсов так, чтобы они не
-конфликтовали.
+%description -l ru.UTF-8
+п÷п╟п╨п╣я┌ isapnptools я│п╬п╢п╣я─п╤п╦я┌ я┐я┌п╦п╩п╦я┌я▀ п╢п╩я▐ п╨п╬п╫я└п╦пЁя┐я─п╦я─п╬п╡п╟п╫п╦я▐ ISA
+Plug-and-Play (PnP) п╨п╟я─я┌, п╬я┌п╡п╣я┤п╟я▌я┴п╦я┘ я│я┌п╟п╫п╢п╟я─я┌я┐ PnP ISA Specification
+Version 1.0a. п п╟я─я┌я▀ ISA PnP п╦я│п©п╬п╩я▄п╥я┐я▌я┌ я─п╣пЁп╦я│я┌я─я▀ п╡п╪п╣я│я┌п╬ п©п╣я─п╣п╨п╩я▌я┤п╟я┌п╣п╩п╣п╧
+п╢п╩я▐ я┐я│я┌п╟п╫п╬п╡п╨п╦ п╟п╢я─п╣я│п╟ п©п╩п╟я┌я▀ п╦ п©я─п╦я│п╡п╬п╣п╫п╦я▐ п╫п╬п╪п╣я─п╟ п©я─п╣я─я▀п╡п╟п╫п╦я▐. п п╟я─я┌я▀ я┌п╟п╨п╤п╣
+я│п╬п╢п╣я─п╤п╟я┌ п╬п©п╦я│п╟п╫п╦п╣ я─п╣я│я┐я─я│п╬п╡, п╨п╬я┌п╬я─я▀п╣ п╫п╣п╬п╠я┘п╬п╢п╦п╪п╬ п╡я▀п╢п╣п╩п╦я┌я▄. BIOS п╡п╟я┬п╣п╧
+п╪п╟я┬п╦п╫я▀ п╦п╩п╦ isapnptools п╦я│п©п╬п╩я▄п╥я┐я▌я┌ п©я─п╬я┌п╬п╨п╬п╩ п╬п©п╦я│п╟п╫п╫я▀п╧ п╡ я│п©п╣я├п╦я└п╦п╨п╟я├п╦п╦
+п╢п╩я▐ п╫п╟я┘п╬п╤п╢п╣п╫п╦я▐ п╡я│п╣я┘ п©п╩п╟я┌ PnP п╦ п╡я▀п╢п╣п╩п╣п╫п╦я▐ я─п╣я│я┐я─я│п╬п╡ я┌п╟п╨, я┤я┌п╬п╠я▀ п╬п╫п╦ п╫п╣
+п╨п╬п╫я└п╩п╦п╨я┌п╬п╡п╟п╩п╦.
 
-BIOS не очень хорошо выполняет работу по распределению ресурсов. Так
-что isapnptools подходит для всех систем, независимо от того, включают
-ли они PnP BIOS. В действительности, PnP BIOS несколько усложняет
-дело. Он может уже активизировать некоторые карты, так чтобы драйверы
-могли их найти. После этого эти утилиты могут их "расконфигурировать",
-вызывая этим разнообразные неприятные эффекты. Если вы имеете PnP
-сетевые карты которые уже работают, вам следует прочитать файлы
-документации очень внимательно перед использованием isapnptools.
+BIOS п╫п╣ п╬я┤п╣п╫я▄ я┘п╬я─п╬я┬п╬ п╡я▀п©п╬п╩п╫я▐п╣я┌ я─п╟п╠п╬я┌я┐ п©п╬ я─п╟я│п©я─п╣п╢п╣п╩п╣п╫п╦я▌ я─п╣я│я┐я─я│п╬п╡. п╒п╟п╨
+я┤я┌п╬ isapnptools п©п╬п╢я┘п╬п╢п╦я┌ п╢п╩я▐ п╡я│п╣я┘ я│п╦я│я┌п╣п╪, п╫п╣п╥п╟п╡п╦я│п╦п╪п╬ п╬я┌ я┌п╬пЁп╬, п╡п╨п╩я▌я┤п╟я▌я┌
+п╩п╦ п╬п╫п╦ PnP BIOS. п▓ п╢п╣п╧я│я┌п╡п╦я┌п╣п╩я▄п╫п╬я│я┌п╦, PnP BIOS п╫п╣я│п╨п╬п╩я▄п╨п╬ я┐я│п╩п╬п╤п╫я▐п╣я┌
+п╢п╣п╩п╬. п·п╫ п╪п╬п╤п╣я┌ я┐п╤п╣ п╟п╨я┌п╦п╡п╦п╥п╦я─п╬п╡п╟я┌я▄ п╫п╣п╨п╬я┌п╬я─я▀п╣ п╨п╟я─я┌я▀, я┌п╟п╨ я┤я┌п╬п╠я▀ п╢я─п╟п╧п╡п╣я─я▀
+п╪п╬пЁп╩п╦ п╦я┘ п╫п╟п╧я┌п╦. п÷п╬я│п╩п╣ я█я┌п╬пЁп╬ я█я┌п╦ я┐я┌п╦п╩п╦я┌я▀ п╪п╬пЁя┐я┌ п╦я┘ "я─п╟я│п╨п╬п╫я└п╦пЁя┐я─п╦я─п╬п╡п╟я┌я▄",
+п╡я▀п╥я▀п╡п╟я▐ я█я┌п╦п╪ я─п╟п╥п╫п╬п╬п╠я─п╟п╥п╫я▀п╣ п╫п╣п©я─п╦я▐я┌п╫я▀п╣ я█я└я└п╣п╨я┌я▀. п∙я│п╩п╦ п╡я▀ п╦п╪п╣п╣я┌п╣ PnP
+я│п╣я┌п╣п╡я▀п╣ п╨п╟я─я┌я▀ п╨п╬я┌п╬я─я▀п╣ я┐п╤п╣ я─п╟п╠п╬я┌п╟я▌я┌, п╡п╟п╪ я│п╩п╣п╢я┐п╣я┌ п©я─п╬я┤п╦я┌п╟я┌я▄ я└п╟п╧п╩я▀
+п╢п╬п╨я┐п╪п╣п╫я┌п╟я├п╦п╦ п╬я┤п╣п╫я▄ п╡п╫п╦п╪п╟я┌п╣п╩я▄п╫п╬ п©п╣я─п╣п╢ п╦я│п©п╬п╩я▄п╥п╬п╡п╟п╫п╦п╣п╪ isapnptools.
 
-%description -l uk
-Пакет isapnptools м╕стить утил╕ти для конф╕гурування ISA Plug-and-Play
-(PnP) карт, як╕ в╕дпов╕дають стандарту PnP ISA Specification Version
-1.0a. Карти ISA PnP використовують рег╕стри зам╕сть перемикач╕в для
-установки адреси плати та присво╓ння номеру переривання. Карти також
-м╕стять опис ресурс╕в, як╕ потр╕бно вид╕лити. BIOS вашо╖ машини чи
-isapnptools використовують протокол, описаний в специф╕кац╕╖, для
-знаходження вс╕х плат PnP та вид╕лення ресурс╕в так, щоб вони не
-конфл╕ктували.
+%description -l uk.UTF-8
+п÷п╟п╨п╣я┌ isapnptools п╪я√я│я┌п╦я┌я▄ я┐я┌п╦п╩я√я┌п╦ п╢п╩я▐ п╨п╬п╫я└я√пЁя┐я─я┐п╡п╟п╫п╫я▐ ISA Plug-and-Play
+(PnP) п╨п╟я─я┌, я▐п╨я√ п╡я√п╢п©п╬п╡я√п╢п╟я▌я┌я▄ я│я┌п╟п╫п╢п╟я─я┌я┐ PnP ISA Specification Version
+1.0a. п п╟я─я┌п╦ ISA PnP п╡п╦п╨п╬я─п╦я│я┌п╬п╡я┐я▌я┌я▄ я─п╣пЁя√я│я┌я─п╦ п╥п╟п╪я√я│я┌я▄ п©п╣я─п╣п╪п╦п╨п╟я┤я√п╡ п╢п╩я▐
+я┐я│я┌п╟п╫п╬п╡п╨п╦ п╟п╢я─п╣я│п╦ п©п╩п╟я┌п╦ я┌п╟ п©я─п╦я│п╡п╬я■п╫п╫я▐ п╫п╬п╪п╣я─я┐ п©п╣я─п╣я─п╦п╡п╟п╫п╫я▐. п п╟я─я┌п╦ я┌п╟п╨п╬п╤
+п╪я√я│я┌я▐я┌я▄ п╬п©п╦я│ я─п╣я│я┐я─я│я√п╡, я▐п╨я√ п©п╬я┌я─я√п╠п╫п╬ п╡п╦п╢я√п╩п╦я┌п╦. BIOS п╡п╟я┬п╬я≈ п╪п╟я┬п╦п╫п╦ я┤п╦
+isapnptools п╡п╦п╨п╬я─п╦я│я┌п╬п╡я┐я▌я┌я▄ п©я─п╬я┌п╬п╨п╬п╩, п╬п©п╦я│п╟п╫п╦п╧ п╡ я│п©п╣я├п╦я└я√п╨п╟я├я√я≈, п╢п╩я▐
+п╥п╫п╟я┘п╬п╢п╤п╣п╫п╫я▐ п╡я│я√я┘ п©п╩п╟я┌ PnP я┌п╟ п╡п╦п╢я√п╩п╣п╫п╫я▐ я─п╣я│я┐я─я│я√п╡ я┌п╟п╨, я┴п╬п╠ п╡п╬п╫п╦ п╫п╣
+п╨п╬п╫я└п╩я√п╨я┌я┐п╡п╟п╩п╦.
 
-BIOS не дуже добре викону╓ роботу по розпод╕ленню ресурс╕в. Так що
-isapnptools п╕дходить для вс╕х систем, незалежно в╕д того, чи
-включають вони PnP BIOS. В д╕йсност╕, PnP BIOS дещо ускладню╓ справу.
-В╕н може вже активувати деяк╕ карти, так щоб драйвери змогли ╖х
-знайти. П╕сля того ц╕ утил╕ти можуть "розконф╕гурувати" ╖х, викликаючи
-цим р╕зноман╕тн╕ непри╓мн╕ ефекти. Якщо ви ма╓те PnP мережев╕ карти
-як╕ вже працюють, вам сл╕д прочитати файли документац╕╖ дуже уважно
-перед використанням isapnptools.
+BIOS п╫п╣ п╢я┐п╤п╣ п╢п╬п╠я─п╣ п╡п╦п╨п╬п╫я┐я■ я─п╬п╠п╬я┌я┐ п©п╬ я─п╬п╥п©п╬п╢я√п╩п╣п╫п╫я▌ я─п╣я│я┐я─я│я√п╡. п╒п╟п╨ я┴п╬
+isapnptools п©я√п╢я┘п╬п╢п╦я┌я▄ п╢п╩я▐ п╡я│я√я┘ я│п╦я│я┌п╣п╪, п╫п╣п╥п╟п╩п╣п╤п╫п╬ п╡я√п╢ я┌п╬пЁп╬, я┤п╦
+п╡п╨п╩я▌я┤п╟я▌я┌я▄ п╡п╬п╫п╦ PnP BIOS. п▓ п╢я√п╧я│п╫п╬я│я┌я√, PnP BIOS п╢п╣я┴п╬ я┐я│п╨п╩п╟п╢п╫я▌я■ я│п©я─п╟п╡я┐.
+п▓я√п╫ п╪п╬п╤п╣ п╡п╤п╣ п╟п╨я┌п╦п╡я┐п╡п╟я┌п╦ п╢п╣я▐п╨я√ п╨п╟я─я┌п╦, я┌п╟п╨ я┴п╬п╠ п╢я─п╟п╧п╡п╣я─п╦ п╥п╪п╬пЁп╩п╦ я≈я┘
+п╥п╫п╟п╧я┌п╦. п÷я√я│п╩я▐ я┌п╬пЁп╬ я├я√ я┐я┌п╦п╩я√я┌п╦ п╪п╬п╤я┐я┌я▄ "я─п╬п╥п╨п╬п╫я└я√пЁя┐я─я┐п╡п╟я┌п╦" я≈я┘, п╡п╦п╨п╩п╦п╨п╟я▌я┤п╦
+я├п╦п╪ я─я√п╥п╫п╬п╪п╟п╫я√я┌п╫я√ п╫п╣п©я─п╦я■п╪п╫я√ п╣я└п╣п╨я┌п╦. п╞п╨я┴п╬ п╡п╦ п╪п╟я■я┌п╣ PnP п╪п╣я─п╣п╤п╣п╡я√ п╨п╟я─я┌п╦
+я▐п╨я√ п╡п╤п╣ п©я─п╟я├я▌я▌я┌я▄, п╡п╟п╪ я│п╩я√п╢ п©я─п╬я┤п╦я┌п╟я┌п╦ я└п╟п╧п╩п╦ п╢п╬п╨я┐п╪п╣п╫я┌п╟я├я√я≈ п╢я┐п╤п╣ я┐п╡п╟п╤п╫п╬
+п©п╣я─п╣п╢ п╡п╦п╨п╬я─п╦я│я┌п╟п╫п╫я▐п╪ isapnptools.
 
 %package devel
 Summary:	Development ISA PnP libraries
-Summary(pl):	Biblioteki ISA PnP dla programistСw
+Summary(pl.UTF-8):   Biblioteki ISA PnP dla programistцЁw
 Group:		Development/Libraries
 
 %description devel
 Development libraries for configuring ISA Plug-and-Play (PnP) devices.
 
-%description devel -l pl
-Biblioteki do rozwoju programСw konfiguruj╠cych urz╠dzenia ISA
+%description devel -l pl.UTF-8
+Biblioteki do rozwoju programцЁw konfigurujд┘cych urzд┘dzenia ISA
 Plug-and-Play (PnP).
 
 %prep
