@@ -1,9 +1,9 @@
 Summary:	Programs to configure ISA Plug-and-Play devices
-Summary(es.UTF-8):   Programas para configurar dispositivos Plug-and-Play ISA en una máquina linux
-Summary(pl.UTF-8):   Narzędzia do konfigurowania urządzeń Plug-and-Play
-Summary(pt_BR.UTF-8):   Programas para configurar dispositivos Plug-and-Play ISA numa máquina Linux
-Summary(ru.UTF-8):   Программы для конфигурации ISA Plug-and-Play (PnP) устройств
-Summary(uk.UTF-8):   Програми для конфігурації ISA Plug-and-Play (PnP) пристроїв
+Summary(es.UTF-8):	Programas para configurar dispositivos Plug-and-Play ISA en una máquina linux
+Summary(pl.UTF-8):	Narzędzia do konfigurowania urządzeń Plug-and-Play
+Summary(pt_BR.UTF-8):	Programas para configurar dispositivos Plug-and-Play ISA numa máquina Linux
+Summary(ru.UTF-8):	Программы для конфигурации ISA Plug-and-Play (PnP) устройств
+Summary(uk.UTF-8):	Програми для конфігурації ISA Plug-and-Play (PnP) пристроїв
 Name:		isapnptools
 Version:	1.26
 Release:	6
@@ -117,7 +117,7 @@ isapnptools підходить для всіх систем, незалежно 
 
 %package devel
 Summary:	Development ISA PnP libraries
-Summary(pl.UTF-8):   Biblioteki ISA PnP dla programistów
+Summary(pl.UTF-8):	Biblioteki ISA PnP dla programistów
 Group:		Development/Libraries
 
 %description devel
