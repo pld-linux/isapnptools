@@ -5,18 +5,18 @@ Summary(pt_BR.UTF-8):	Programas para configurar dispositivos Plug-and-Play ISA n
 Summary(ru.UTF-8):	Программы для конфигурации ISA Plug-and-Play (PnP) устройств
 Summary(uk.UTF-8):	Програми для конфігурації ISA Plug-and-Play (PnP) пристроїв
 Name:		isapnptools
-Version:	1.26
-Release:	6
-License:	GPL
+Version:	1.27
+Release:	1
+License:	GPL v2
 Group:		Applications/System
-Source0:	ftp://ftp.demon.co.uk/pub/unix/linux/utils/%{name}-%{version}.tgz
-# Source0-md5:	26def2016548edeafe383113f0bc8ac6
+Source0:	ftp://metalab.unc.edu/pub/Linux/system/hardware/%{name}-%{version}.tgz
+# Source0-md5:	b997ba56583dc850fce9b93d658dfa0c
 Patch0:		%{name}-ac_fix.patch
-Patch1:		%{name}-getopt.patch
 URL:		http://www.roestock.demon.co.uk/isapnptools/
 BuildRequires:	autoconf
 BuildRequires:	automake
 BuildRequires:	flex
+BuildRequires:	libtool
 Requires(post):	fileutils
 Requires(post):	grep
 Requires(post):	sed
@@ -130,10 +130,9 @@ Plug-and-Play (PnP).
 %prep
 %setup -q
 %patch0 -p1
-%patch1 -p1
 
 %build
-rm -f missing
+%{__libtoolize}
 %{__aclocal}
 %{__autoconf}
 %{__autoheader}
@@ -168,12 +167,15 @@ fi
 %defattr(644,root,root,755)
 %doc ChangeLog NEWS README config-scripts/YMH0021
 %attr(750,root,root) %dir %{_sysconfdir}
-%attr(640,root,root) %config(noreplace) %verify(not md5 mtime size) %{_sysconfdir}/*
-%attr(755,root,root) %{_sbindir}/*
-%{_mandir}/man[58]/*
+%attr(640,root,root) %config(noreplace) %verify(not md5 mtime size) %{_sysconfdir}/isapnp.conf
+%attr(640,root,root) %config(noreplace) %verify(not md5 mtime size) %{_sysconfdir}/isapnp.gone
+%attr(755,root,root) %{_sbindir}/isapnp
+%attr(755,root,root) %{_sbindir}/pnpdump
+%{_mandir}/man5/isapnp.conf.5*
+%{_mandir}/man8/isapnp.8*
+%{_mandir}/man8/pnpdump.8*
 
 %files devel
 %defattr(644,root,root,755)
-%{_libdir}/*.a
-%dir %{_includedir}/isapnp
-%{_includedir}/isapnp/*.h
+%{_libdir}/libisapnp.a
+%{_includedir}/isapnp
